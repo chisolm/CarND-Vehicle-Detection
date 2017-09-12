@@ -1,0 +1,11 @@
+.DS_Store
+.ipynb_checkpoints
+old_code
+.*.swp
+vehicles*
+non-vehicles*
+smalltest
+vsmalltest
+vvsmalltest
+fulltest
+__pycache__
