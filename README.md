@@ -73,6 +73,19 @@ respectively.  I implementd a small class to track and management the heatmap va
 
 ![alt text][image1]
 
+On a subsequent implementation I added multiple window sizes.  I ended up with 5 windows from with 0.5 scale
+to 2.5 scale in 0.5 increments.  The window sizes were chosen with the largest windows covering the full 
+road region and decreasing with scale size as the expected recogniztion area for the small scale sizes
+was expected to father towards the road horizon.  The last scale of 0.5 shares the same region as the 1.0
+scale.  I verified the useful region by running these settings against a series of test images.
+
+It is effectively using a 50% overlap based on how it is stepping.  I did not vary this.
+
+The 0.5 scale added an enourmous number of boxes to check and significantly slowed down my frame rate.
+However it was the only method that I found to detect the white car at certain problem distances in the
+18s-20s range of the test video.
+  
+
 #### Test of pipeline
 
 The basic operation of find_cars can be seen above.
@@ -107,3 +120,6 @@ correctly most of the time, but it does not do it all the time where it very res
 would be very useful to generate a new set of training data based on the video data to compare the training
 of the model with the data set I do use.
 
+The addition of the 0.5 scale size check for find_cars has slowed down my solution significantly and
+increased the noise in a number of cases.  The noise is primarily false positives on the guard rail 
+and some cars going in the opposite direction are found.
